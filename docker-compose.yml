@@ -1,0 +1,53 @@
+version: '2'
+services:
+  zoo1:
+    build:
+      context: ./zookeeper
+    image: skroutz/zookeeper:latest
+    hostname: zoo1
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      MYID: 1
+  zoo2:
+    build:
+      context: ./zookeeper
+    image: skroutz/zookeeper:latest
+    hostname: zoo2
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      MYID: 2
+  zoo3:
+    build:
+      context: ./zookeeper
+    image: skroutz/zookeeper:latest
+    hostname: zoo3
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      MYID: 3
+  kc1.docker:
+    build:
+      context: ./kafka
+      args:
+        KAFKAPKG: "${KAFKAPKG}"
+    hostname: kc1.docker
+    container_name: kc1
+    restart: unless-stopped
+    image: "skroutz/kafka:${KAFKAVERSION}"
+    env_file: ./.env
+    environment:
+      KAFKA_BROKER_ID: 1
+  kc2.docker:
+    build:
+      context: ./kafka
+      args:
+        KAFKAPKG: "${KAFKAPKG}"
+    image: "skroutz/kafka:${KAFKAVERSION}"
+    hostname: kc2.docker
+    container_name: kc2
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      KAFKA_BROKER_ID: 2
