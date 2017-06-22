@@ -12,4 +12,4 @@ ADD zoo /usr/local/bin/zoo
 
 EXPOSE 2181
 
-CMD ["/usr/local/bin/zoo"]
+ENTRYPOINT ["/usr/local/bin/zoo"]

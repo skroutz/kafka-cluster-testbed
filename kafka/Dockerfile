@@ -23,4 +23,4 @@ ADD kafka /usr/local/bin/kafka
 
 EXPOSE 9092
 
-CMD ["/usr/local/bin/kafka"]
+ENTRYPOINT ["/usr/local/bin/kafka"]

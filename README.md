@@ -13,8 +13,8 @@ Dependencies
 
 - `docker.io`
 - `docker-compose`
-- `libnss-docker`
-- `kafkacat` (for testing)
+- `libnss-docker` (optional)
+- `kafkacat` (optional, for testing)
 
 Usage
 -----
