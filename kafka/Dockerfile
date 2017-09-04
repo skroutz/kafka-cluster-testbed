@@ -16,6 +16,7 @@ RUN curl -sSL http://debian.skroutz.gr/skroutz.asc | apt-key add -
 
 RUN echo $KAFKAPKG
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    -t stretch-skroutz-proposed-updates \
     $KAFKAPKG \
     kafkacat
 
