@@ -38,6 +38,9 @@ $ echo "Hello Kafka" | kafkacat -P -b kc1.docker -t top1
 $ kafkacat -C -b kc1.docker -t top1 -c 1
 Hello Kafka
 
+# Rafka
+$ redis-cli -p 6380 rpushx topics:top1 "hello there"
+
 # Remove everything
 $ docker-compose down
 ```

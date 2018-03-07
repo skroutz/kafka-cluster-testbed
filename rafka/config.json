@@ -1,0 +1,23 @@
+{
+ "general": {
+   "api.version.request": true,
+   "bootstrap.servers": "kc1:9092,kc2:9092",
+   "session.timeout.ms": 6000,
+   "log.connection.close": false
+ },
+ "consumer": {
+   "go.events.channel.enable": false,
+   "go.application.rebalance.enable": false,
+   "enable.auto.commit": false,
+   "auto.offset.reset": "latest",
+   "enable.partition.eof": false,
+   "queued.max.messages.kbytes": 10000,
+   "queued.min.messages": 100000,
+   "fetch.message.max.bytes": 104857
+ },
+ "producer": {
+   "go.delivery.reports": true,
+   "go.events.channel.size": 1000,
+   "request.required.acks": -1
+ }
+}
