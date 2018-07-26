@@ -5,6 +5,7 @@ services:
       context: ./zookeeper
     image: skroutz/zookeeper:latest
     hostname: zoo1
+    container_name: zoo1
     restart: unless-stopped
     env_file: ./.env
     environment:
@@ -14,6 +15,7 @@ services:
       context: ./zookeeper
     image: skroutz/zookeeper:latest
     hostname: zoo2
+    container_name: zoo2
     restart: unless-stopped
     env_file: ./.env
     environment:
@@ -23,6 +25,7 @@ services:
       context: ./zookeeper
     image: skroutz/zookeeper:latest
     hostname: zoo3
+    container_name: zoo3
     restart: unless-stopped
     env_file: ./.env
     environment:
