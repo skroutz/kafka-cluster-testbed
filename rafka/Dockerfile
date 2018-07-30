@@ -9,7 +9,7 @@ RUN apt-get update && \
 # Setup skroutz repositories
 ADD skroutz-stable.list /etc/apt/sources.list.d/
 ADD skroutz-pu.list /etc/apt/sources.list.d/
-RUN curl -sSL http://debian.skroutz.gr/skroutz.asc | apt-key add -
+RUN curl -sSL https://debian.skroutz.gr/skroutz.asc | apt-key add -
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     kafkacat \
