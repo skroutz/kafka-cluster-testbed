@@ -23,6 +23,8 @@ open('/etc/kafka/server.properties') { |r|
       w.write(l)
     }
 
+    w.puts
+
     settings.each { |k, v|
       w.puts("#{k}=#{v}")
     }
