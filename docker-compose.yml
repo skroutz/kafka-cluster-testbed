@@ -54,11 +54,11 @@ services:
     env_file: ./.env
     environment:
       KAFKA_BROKER_ID: 2
-  rafka:
-    build:
-      context: ./rafka
-    ports:
-      - "6380:6380"
-    hostname: rafka
-    restart: unless-stopped
-    env_file: ./.env
+      #rafka:
+      #  build:
+      #    context: ./rafka
+      #  ports:
+      #    - "6380:6380"
+      #  hostname: rafka
+      #  restart: unless-stopped
+      #  env_file: ./.env
