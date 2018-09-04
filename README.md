@@ -26,9 +26,8 @@ $ docker-compose build
 $ docker-compose up (Ctrl-C to stop)
 
 # Create a new topic
-$ docker-compose exec kc1.docker kafka-topics --zookeeper zoo1,zoo2 --topic top1 --partitions 2 --replication-factor 2 --create
-top1
-$ docker-compose exec kc1.docker kafka-topics --zookeeper zoo1,zoo2 --describe
+$ ./k.sh topics --topic top1 --partitions 2 --replication-factor 2 --create
+$ ./k.sh topics --describe
 Topic:top1	PartitionCount:2	ReplicationFactor:2	Configs:
 	Topic: top1	Partition: 0	Leader: 1	Replicas: 1,2	Isr: 1,2
 	Topic: top1	Partition: 1	Leader: 2	Replicas: 2,1	Isr: 2,1
