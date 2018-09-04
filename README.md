@@ -39,8 +39,32 @@ $ kafkacat -C -b kc1.docker -t top1 -c 1
 Hello Kafka
 
 # Rafka
-$ redis-cli -p 6380 rpushx topics:top1 "hello there"
+$ redis-cli -h rafka.docker -p 6380 rpushx topics:top1 "hello there"
 
 # Remove everything
 $ docker-compose down
+```
+
+# Additional services
+
+Additional kafka-related services are available
+
+* [Rafka](https://github.com/skroutz/rafka)
+* [Schema Registry](https://github.com/confluentinc/schema-registry)
+* [Kafka REST](https://github.com/confluentinc/kafka-rest)
+* [KSQL](https://github.com/confluentinc/ksql)
+* [Confluent Control Center](https://docs.confluent.io/current/control-center/docs/index.html)
+
+These services are not started by default and defined in `docker-compose.additional.yml`, according to the
+[Multiple Compose files pattern](https://docs.docker.com/compose/extends/#multiple-compose-files)
+and can be started independently through
+
+```sh
+docker-compose -f docker-compose.additional.yml up
+```
+
+All services, both kafka and all the additional ones, can be started through
+
+```sh
+docker-compose -f docker-compose.yml -f docker-compose.additional.yml up
 ```

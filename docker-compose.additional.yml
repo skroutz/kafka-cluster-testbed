@@ -1,0 +1,52 @@
+version: '2'
+services:
+  rafka:
+    build:
+      context: ./rafka
+    hostname: rafka
+    container_name: rafka
+    restart: unless-stopped
+    env_file: ./.env
+  ksql:
+    build:
+      context: ./ksql
+    hostname: ksql
+    container_name: ksql
+    restart: unless-stopped
+  schema-registry:
+    image: "confluentinc/cp-schema-registry:5.0.0"
+    hostname: schema-registry
+    container_name: schema-registry
+    environment:
+      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: zoo1:2181
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+  kafka-rest:
+    image: "confluentinc/cp-kafka-rest:5.0.0"
+    hostname: kafka-rest
+    container_name: kafka-rest
+    environment:
+      KAFKA_REST_ZOOKEEPER_CONNECT: zoo1:2181
+      KAFKA_REST_LISTENERS: http://0.0.0.0:8082
+      KAFKA_REST_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      KAFKA_REST_HOST_NAME: kafka-rest
+  control-center:
+    image: "confluentinc/cp-enterprise-control-center:5.0.0"
+    hostname: control-center
+    container_name: control-center
+    ulimits:
+      nofile:
+        soft: 16384
+        hard: 16384
+#    volumes:
+#     - /tmp/control-center/data:/var/lib/confluent-control-center
+    environment:
+      CONTROL_CENTER_ZOOKEEPER_CONNECT: zoo1:2181
+      CONTROL_CENTER_BOOTSTRAP_SERVERS: kc1.docker:9092,kc2.docker:9092
+      CONTROL_CENTER_KSQL_URL: http://ksql:8088
+      CONTROL_CENTER_SCHEMA_REGISTRY_URL: http://schema_registry:8081
+      CONTROL_CENTER_CONNECT_CLUSTER: kc1.docker:9092,kc2.docker:9092
+      CONTROL_CENTER_REPLICATION_FACTOR: 2
+      CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 2
+      CONTROL_CENTER_INTERNAL_TOPICS_PARTITIONS: 2
+      CONTROL_CENTER_STREAMS_NUM_STREAM_THREADS: 2
