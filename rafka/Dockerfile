@@ -22,4 +22,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ADD config.json /etc/rafka/config.json
 EXPOSE 6380
 
-ENTRYPOINT ["/usr/bin/rafka", "--kafka", "/etc/rafka/config.json"]
+ENTRYPOINT ["/usr/bin/rafka", "--config", "/etc/rafka/config.json"]
