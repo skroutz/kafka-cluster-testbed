@@ -10,10 +10,12 @@ RUN apt-get update && \
     default-jre-headless
 
 # Setup skroutz repositories
-ADD skroutz-stable.list /etc/apt/sources.list.d/
-ADD skroutz-pu.list /etc/apt/sources.list.d/
 RUN curl -sSL https://debian.skroutz.gr/skroutz.asc | apt-key add -
 
+ADD skroutz-stable.list /etc/apt/sources.list.d/
+RUN apt-get update  && apt-get install -y --no-install-recommends skroutz-archive-keyring
+
+ADD skroutz-pu.list /etc/apt/sources.list.d/
 RUN echo $KAFKAPKG
 RUN apt-get update && apt-get install -y --no-install-recommends \
     $KAFKAPKG \
