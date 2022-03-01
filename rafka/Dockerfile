@@ -1,8 +1,4 @@
-FROM debian:stretch
-
-# Faster debian mirror
-RUN sed -i -e 's|http://deb.debian.org|http://debian.anycast-test.mirrors.debian.org|' /etc/apt/sources.list
-RUN sed -i -e 's|http://security.debian.org|http://security.anycast-test.mirrors.debian.org/|' /etc/apt/sources.list
+FROM debian:buster
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -12,7 +8,6 @@ RUN apt-get update && \
 
 # Setup skroutz repositories
 ADD skroutz-stable.list /etc/apt/sources.list.d/
-ADD skroutz-pu.list /etc/apt/sources.list.d/
 RUN curl -sSL https://debian.skroutz.gr/skroutz.asc | apt-key add -
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
