@@ -1,11 +1,11 @@
-FROM debian:stretch
+FROM debian:buster
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     procps \
     curl gnupg \
     ruby \
-    openjdk-8-jre-headless \
+    default-jre-headless \
     zookeeper
 
 ADD zoo /usr/local/bin/zoo

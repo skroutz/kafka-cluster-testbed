@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:buster
 
 ARG KAFKAPKG
 
@@ -7,7 +7,7 @@ RUN apt-get update && \
     procps \
     curl gnupg \
     ruby \
-    openjdk-8-jre-headless
+    default-jre-headless
 
 # Setup skroutz repositories
 ADD skroutz-stable.list /etc/apt/sources.list.d/

@@ -1,1 +1,1 @@
-deb http://debian.skroutz.gr/debian/  stretch-skroutz-proposed-updates main non-free
+deb http://debian.skroutz.gr/debian/  buster-skroutz-proposed-updates main non-free
