@@ -1,1 +1,0 @@
-deb [signed-by=/usr/share/keyrings/skroutz-pu-archive-keyring.gpg] http://debian.skroutz.gr/debian/  buster-skroutz-proposed-updates main non-free

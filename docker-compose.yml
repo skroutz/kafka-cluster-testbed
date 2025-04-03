@@ -1,64 +1,55 @@
+# See https://github.com/bitnami/containers/tree/940871d2dea1c46f37e65940e80ce35789ca105a/bitnami/kafka
+
 version: '2'
 services:
   zoo1:
-    build:
-      context: ./zookeeper
-    image: skroutz/zookeeper:latest
+    image: bitnami/zookeeper:3.9
     hostname: zoo1
     container_name: zoo1
     restart: unless-stopped
     env_file: ./.env
     environment:
-      MYID: 1
+      ZOO_SERVER_ID: 1
+      ZOO_SERVERS: 0.0.0.0:2888:3888,zoo2:2888:3888,zoo3:2888:3888
   zoo2:
-    build:
-      context: ./zookeeper
-    image: skroutz/zookeeper:latest
+    image: bitnami/zookeeper:3.9
     hostname: zoo2
     container_name: zoo2
     restart: unless-stopped
     env_file: ./.env
     environment:
-      MYID: 2
+      ZOO_SERVER_ID: 2
+      ZOO_SERVERS: zoo1:2888:3888,0.0.0.0:2888:3888,zoo3:2888:3888
   zoo3:
-    build:
-      context: ./zookeeper
-    image: skroutz/zookeeper:latest
+    image: bitnami/zookeeper:3.9
     hostname: zoo3
     container_name: zoo3
     restart: unless-stopped
     env_file: ./.env
     environment:
-      MYID: 3
+      ZOO_SERVER_ID: 3
+      ZOO_SERVERS: zoo1:2888:3888,zoo2:2888:3888,0.0.0.0:2888:3888
   kc1.docker:
-    build:
-      context: ./kafka
-      args:
-        KAFKAPKG: "${KAFKAPKG}"
     hostname: kc1.docker
     container_name: kc1
     restart: unless-stopped
-    image: "skroutz/kafka:${KAFKAVERSION}"
+    image: bitnami/kafka:3.5.1
     env_file: ./.env
     environment:
-      KAFKA_BROKER_ID: 1
+      KAFKA_CFG_NODE_ID: 1
   kc2.docker:
-    build:
-      context: ./kafka
-      args:
-        KAFKAPKG: "${KAFKAPKG}"
-    image: "skroutz/kafka:${KAFKAVERSION}"
     hostname: kc2.docker
     container_name: kc2
+    image: bitnami/kafka:3.5.1
     restart: unless-stopped
     env_file: ./.env
     environment:
-      KAFKA_BROKER_ID: 2
-  rafka:
-    build:
-      context: ./rafka
-    ports:
-      - "6380:6380"
-    hostname: rafka
-    restart: unless-stopped
-    env_file: ./.env
+      KAFKA_CFG_NODE_ID: 2
+  # rafka:
+  #   build:
+  #     context: ./rafka
+  #   ports:
+  #     - "6380:6380"
+  #   hostname: rafka
+  #   restart: unless-stopped
+  #   env_file: ./.env
