@@ -7,6 +7,7 @@ Services
 
 - Zookeeper (3 nodes)
 - Kafka (2 nodes)
+- Rafka (1 node)
 
 Dependencies
 ------------
@@ -18,7 +19,6 @@ Dependencies
 
 Usage
 -----
-
 
 ```shell
 # Prepare cluster
