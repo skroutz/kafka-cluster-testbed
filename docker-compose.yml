@@ -35,16 +35,28 @@ services:
     restart: unless-stopped
     image: bitnami/kafka:3.5.1
     env_file: ./.env
+    ports:
+      - "9093:9093"
     environment:
       KAFKA_CFG_NODE_ID: 1
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,INTERNAL:PLAINTEXT
+      KAFKA_LISTENERS: PLAINTEXT://:9093,INTERNAL://:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kc1.docker:9093,INTERNAL://:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
   kc2.docker:
     hostname: kc2.docker
     container_name: kc2
     image: bitnami/kafka:3.5.1
     restart: unless-stopped
     env_file: ./.env
+    ports:
+      - "9094:9094"
     environment:
       KAFKA_CFG_NODE_ID: 2
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,INTERNAL:PLAINTEXT
+      KAFKA_LISTENERS: PLAINTEXT://:9094,INTERNAL://:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kc2.docker:9094,INTERNAL://:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
   # rafka:
   #   build:
   #     context: ./rafka
