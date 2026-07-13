@@ -3,7 +3,7 @@
 version: '2'
 services:
   zoo1:
-    image: bitnami/zookeeper:3.9
+    image: soldevelo/zookeeper:3.9
     hostname: zoo1
     container_name: zoo1
     restart: unless-stopped
@@ -12,7 +12,7 @@ services:
       ZOO_SERVER_ID: 1
       ZOO_SERVERS: 0.0.0.0:2888:3888,zoo2:2888:3888,zoo3:2888:3888
   zoo2:
-    image: bitnami/zookeeper:3.9
+    image: soldevelo/zookeeper:3.9
     hostname: zoo2
     container_name: zoo2
     restart: unless-stopped
@@ -21,7 +21,7 @@ services:
       ZOO_SERVER_ID: 2
       ZOO_SERVERS: zoo1:2888:3888,0.0.0.0:2888:3888,zoo3:2888:3888
   zoo3:
-    image: bitnami/zookeeper:3.9
+    image: soldevelo/zookeeper:3.9
     hostname: zoo3
     container_name: zoo3
     restart: unless-stopped
